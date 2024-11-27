@@ -28,7 +28,7 @@ def fetch_image(url):
 # Resize the image
 size = common.input_size(interpreter)
 if len(sys.argv) == 2:
-    image = fetch_image(sys.argv[1])
+    image = fetch_image(sys.argv[1]).convert('RGB').resize(size, Image.ANTIALIAS)
 else:
     image = Image.open(image_file).convert('RGB').resize(size, Image.ANTIALIAS)
 
