@@ -1,6 +1,7 @@
 import os
 import pathlib
 import sys
+import requests
 from pycoral.utils import edgetpu
 from pycoral.utils import dataset
 from pycoral.adapters import common
@@ -18,6 +19,12 @@ image_file = os.path.join(script_dir, 'test1.jpg')
 interpreter = edgetpu.make_interpreter(model_file)
 interpreter.allocate_tensors()
 
+def fetch_image(url):
+    # Fetch the image from the URL
+    response = requests.get(url)
+        # Open the image using PIL
+    return Image.open(BytesIO(response.content))
+
 # Resize the image
 size = common.input_size(interpreter)
 if len(sys.argv) == 2:
@@ -34,9 +41,3 @@ classes = classify.get_classes(interpreter, top_k=1)
 labels = dataset.read_label_file(label_file)
 for c in classes:
     print('%s: %.5f' % (labels.get(c.id, c.id), c.score))
-
-def fetch_image(url):
-    # Fetch the image from the URL
-    response = requests.get(url)
-        # Open the image using PIL
-    return Image.open(BytesIO(response.content))
