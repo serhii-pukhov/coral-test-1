@@ -45,4 +45,4 @@ labels = dataset.read_label_file(label_file)
 for c in classes:
     print('%s: %.5f' % (labels.get(c.id, c.id), c.score))
 
-print('took %s ms', (datetime.now().microsecond - start_time)/1000)
+print(f'took {(datetime.now().microsecond - start_time)/1000} ms')
