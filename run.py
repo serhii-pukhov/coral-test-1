@@ -2,13 +2,13 @@ import os
 import pathlib
 import sys
 import requests
+import time
 from pycoral.utils import edgetpu
 from pycoral.utils import dataset
 from pycoral.adapters import common
 from pycoral.adapters import classify
 from PIL import Image
 from io import BytesIO
-from datetime import datetime
 
 # Specify the TensorFlow model, labels, and image
 script_dir = pathlib.Path(__file__).parent.absolute()
@@ -33,7 +33,7 @@ if len(sys.argv) == 2:
 else:
     image = Image.open(image_file).convert('RGB').resize(size, Image.ANTIALIAS)
 
-start_time = datetime.now().microsecond
+start_time = round(time.time()*1000)
 
 # Run an inference
 common.set_input(interpreter, image)
@@ -45,4 +45,4 @@ labels = dataset.read_label_file(label_file)
 for c in classes:
     print('%s: %.5f' % (labels.get(c.id, c.id), c.score))
 
-print(f'took {(datetime.now().microsecond - start_time)/1000} ms')
+print(f'took {round(time.time()*1000) - start_time} ms')
