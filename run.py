@@ -28,8 +28,7 @@ interpreter.allocate_tensors()
 
 size = common.input_size(interpreter)
 
-def classify_image(url):
-    image = fetch_image(url).convert('RGB').resize(size, Image.ANTIALIAS)
+def classify_image(image):
     start_time = round(time.time() * 1000)
 
     # Run an inference
@@ -54,7 +53,8 @@ urls = [
 ]
 
 for url in urls:
-    classify_image(url)
+    image = fetch_image(url).convert('RGB').resize(size, Image.ANTIALIAS)
+    classify_image(image)
 
 # if len(sys.argv) == 2:
 #     image = fetch_image(sys.argv[1]).convert('RGB').resize(size, Image.ANTIALIAS)
