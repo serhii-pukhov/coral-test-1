@@ -56,21 +56,11 @@ for url in urls:
     image = fetch_image(url).convert('RGB').resize(size, Image.ANTIALIAS)
     classify_image(image)
 
-# if len(sys.argv) == 2:
-#     image = fetch_image(sys.argv[1]).convert('RGB').resize(size, Image.ANTIALIAS)
-# else:
-#     image = Image.open(image_file).convert('RGB').resize(size, Image.ANTIALIAS)
-#
-# start_time = round(time.time()*1000)
-#
-# # Run an inference
-# common.set_input(interpreter, image)
-# interpreter.invoke()
-# classes = classify.get_classes(interpreter, top_k=1)
-#
-# # Print the result
-# labels = dataset.read_label_file(label_file)
-# for c in classes:
-#     print('%s: %.5f' % (labels.get(c.id, c.id), c.score))
-#
-# print(f'took {round(time.time()*1000) - start_time} ms')
+if len(sys.argv) == 2:
+    image = fetch_image(sys.argv[1]).convert('RGB').resize(size, Image.ANTIALIAS)
+    classify_image(image)
+else:
+    # run with pre-defined urls
+    for url in urls:
+        image = fetch_image(url).convert('RGB').resize(size, Image.ANTIALIAS)
+        classify_image(image)
