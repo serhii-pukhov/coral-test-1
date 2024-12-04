@@ -13,7 +13,7 @@ pyenv install 3.9.10
 pyenv global 3.9.10
 
 python -m venv coral_env
-source coral_env/bin/activate
+source "coral_env/bin/activate"
 
 # Step 1: Install PyCoral and TFLite libraries for Python 3
 # this step will fail if python version is not 3.9
@@ -35,4 +35,4 @@ sudo apt-get install libedgetpu1-std
 # sudo apt-get install libedgetpu1-max
 
 # Step 4: Install pip dependencies for the script
-pip install requests Pillow
+pip install requests Pillow==9.5.0 numpy==1.26.4

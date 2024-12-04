@@ -52,10 +52,6 @@ urls = [
     "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2020/01/28150457/French-Bulldog-puppy-sitting-on-the-floor-in-the-living-room.jpg"
 ]
 
-for url in urls:
-    image = fetch_image(url).convert('RGB').resize(size, Image.ANTIALIAS)
-    classify_image(image)
-
 if len(sys.argv) == 2:
     image = fetch_image(sys.argv[1]).convert('RGB').resize(size, Image.ANTIALIAS)
     classify_image(image)
