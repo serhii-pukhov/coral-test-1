@@ -43,12 +43,9 @@ def classify_image(image):
     print(f'took {round(time.time() * 1000) - start_time} ms')
 
 urls = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSah1gbgT4_Wng5Kt7blk3CrCic9NMAVga7Mw&s",
-    "https://www.monde-animal.fr/wp-content/uploads/2020/04/fiche-animale-monde-animal-girafe.jpg",
-    "https://cdn.britannica.com/26/162626-050-3534626F/Koala.jpg",
-    "https://dogsinc.org/wp-content/uploads/2021/08/extraordinary-dog.png",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStNw98RLUpDvKzb0evAxJVspBhoBboJSFPwQ&s",
-    "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2020/01/28150457/French-Bulldog-puppy-sitting-on-the-floor-in-the-living-room.jpg"
+    "https://www.capitalleasegroup.com/wp-content/uploads/2020/10/vehicle-fleet-maintenance-services.jpg",
+    "https://www.saddleman.com/media/wysiwyg/Fleet-Vehicles-For-Sale.jpg",
+    "https://hips.hearstapps.com/hmg-prod/images/gettyimages-1214430325.jpg"
 ]
 
 if len(sys.argv) == 2:
