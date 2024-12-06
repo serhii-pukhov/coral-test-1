@@ -12,8 +12,8 @@ from io import BytesIO
 
 # Specify the TensorFlow model, labels, and image
 script_dir = pathlib.Path(__file__).parent.absolute()
-model_file = os.path.join(script_dir, 'models/animals.tflite')
-label_file = os.path.join(script_dir, 'models/labels.txt')
+model_file = os.path.join(script_dir, 'models/vehicles.tflite')
+label_file = os.path.join(script_dir, 'models/vehicles_labels.txt')
 
 def fetch_image(url):
     # Fetch the image from the URL
