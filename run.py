@@ -9,11 +9,11 @@ from pycoral.adapters import common
 from pycoral.adapters import classify
 from PIL import Image
 from io import BytesIO
-from ultralytics import YOLO
 
 # Specify the TensorFlow model, labels, and image
 script_dir = pathlib.Path(__file__).parent.absolute()
-model_file = os.path.join(script_dir, 'animals.tflite')
+model_file = os.path.join(script_dir, 'models/animals.tflite')
+label_file = os.path.join(script_dir, 'models/labels.txt')
 
 def fetch_image(url):
     # Fetch the image from the URL
@@ -22,11 +22,11 @@ def fetch_image(url):
     return Image.open(BytesIO(response.content))
 
 # Initialize the TF interpreter
-interpreter = edgetpu.make_interpreter("models/vehicles.tflite")
+interpreter = edgetpu.make_interpreter(model_file)
 interpreter.allocate_tensors()
 
 size = common.input_size(interpreter)
-labels = YOLO("models/vehicles.tflite").names
+labels = dataset.read_label_file(label_file)
 
 def classify_image(image):
     start_time = round(time.time() * 1000)
