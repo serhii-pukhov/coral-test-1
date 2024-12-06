@@ -9,7 +9,7 @@ from pycoral.adapters import common
 from pycoral.adapters import classify
 from PIL import Image
 from io import BytesIO
-from ultralitics import YOLO
+from ultralytics import YOLO
 
 # Specify the TensorFlow model, labels, and image
 script_dir = pathlib.Path(__file__).parent.absolute()
