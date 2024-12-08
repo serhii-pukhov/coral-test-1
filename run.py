@@ -7,13 +7,14 @@ from pycoral.utils import edgetpu
 from pycoral.utils import dataset
 from pycoral.adapters import common
 from pycoral.adapters import classify
+from pycoral.adapters.detect import get_objects
 from PIL import Image
 from io import BytesIO
 
 # Specify the TensorFlow model, labels, and image
 script_dir = pathlib.Path(__file__).parent.absolute()
-model_file = os.path.join(script_dir, 'models/vehicles.tflite')
-label_file = os.path.join(script_dir, 'models/vehicles_labels.txt')
+model_file = os.path.join(script_dir, 'models/tf2_ssd_mobilenet_v2_coco17_ptq_edgetpu.tflite')
+label_file = os.path.join(script_dir, 'models/coco_labels.txt')
 
 def fetch_image(url):
     # Fetch the image from the URL
@@ -34,11 +35,11 @@ def classify_image(image):
     # Run an inference
     common.set_input(interpreter, image)
     interpreter.invoke()
-    classes = classify.get_classes(interpreter, top_k=1)
+    objs = get_objects(interpreter, 0.1)[:4]
 
     # Print the result
-    for c in classes:
-        print('%s: %.5f' % (labels.get(c.id, c.id), c.score))
+    for obj in objs:
+        print('%s: %.5f' % (labels.get(obj.id, obj.id), int(100 * obj.score)))
 
     print(f'took {round(time.time() * 1000) - start_time} ms')
 
